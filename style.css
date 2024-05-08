@@ -1,0 +1,33 @@
+.keys {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+.key {
+        border: .4rem solid black;
+        margin: 1rem;
+        font-size: 1.5rem;
+        padding: 1rem 2rem;
+        transition: all .07s ease;
+        width: 100px;
+        text-align: center;
+    }
+.key.playing {
+        transform: scale(1.1);
+        border-color: #ffc600;
+        box-shadow: 0 0 1rem #ffc600;
+    }
+kbd {
+        display: block;
+        font-size: 4rem;
+    }
+.sound {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: .1rem;
+        color: #ffc600;
+    }
+   
+    

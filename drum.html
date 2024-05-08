@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Drum Kit</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<audio data-key="65" src="clap.wav"></audio>
+<audio data-key="68" src="bass.wav"></audio>
+<audio data-key="70" src="snare.wav"></audio>
+<audio data-key="72" src="ride.wav"></audio>
+<div class="keys">
+    <div data-key="65" class="key">
+        <kbd>A</kbd>
+        <span class="sound">clap</span>
+    </div>
+    <div data-key="68" class="key">
+        <kbd>B</kbd>
+        <span class="sound">bass</span>
+    </div>
+    <div data-key="70" class="key">
+        <kbd>S</kbd>
+        <span class="sound">snare</span>
+    </div>
+    <div data-key="72" class="key">
+        <kbd>R</kbd>
+        <span class="sound">ride</span>
+    </div>
+<!-- Repeat for other keys -->
+</div>
+<script>
+    function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    console.log('Audio element:', audio);
+    console.log('Key element:', key);
+    if (!audio) return; // Stops the function from running for keys without associated audio.
+        audio.currentTime = 0; // Rewind to the start.
+        audio.play();
+        key.classList.add('playing');
+}
+
+function removeTransition(e) {
+    if (e.propertyName !== 'transform') return; // Skip if it's not a transform.
+        console.log('Transition ended:', e.target);
+        e.target.classList.remove('playing');
+}
+
+const keys = document.querySelectorAll('.key');
+console.log('Keys:', keys);
+
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+window.addEventListener('keydown', playSound);
+</script>
+
+<!-- <script src="script.js"></script> -->
+<!-- Repeat for other keys -->
+</body>
+</html>
